@@ -1,0 +1,24 @@
+$widths: (
+  "sm": 0,
+  "md": 1440px,
+  "lg": 1920px,
+  "xl": 2560px,
+);
+$heights: (
+  "sm": 0,
+  "md": 900px,
+  "lg": 1080px,
+  "xl": 1440px,
+);
+
+@mixin screen-is($breakpoint) {
+  @media (min-width: map-get($widths, $breakpoint)),
+    (min-height: map-get($heights, $breakpoint)) and (orientation: landscape) {
+    @content;
+  }
+}
+
+body {
+  padding: 2rem;
+  font-family: "Sintony", sans-serif;
+}
