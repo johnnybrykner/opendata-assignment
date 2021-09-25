@@ -21,4 +21,18 @@ $heights: (
 body {
   padding: 2rem;
   font-family: "Sintony", sans-serif;
+
+  em {
+    font-weight: bold;
+  }
+
+  .bordered {
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+
+    &:hover {
+      border-color: transparent;
+      box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1);
+    }
+  }
 }

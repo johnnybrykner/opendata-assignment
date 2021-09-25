@@ -1,4 +1,12 @@
+@import "../style.scss";
+
 .timepicker__element {
-  background-color: lightblue;
   padding: 0.5rem;
+  display: block;
+  margin-top: 0.2rem;
+
+  @include screen-is(md) {
+    display: inline;
+    cursor: pointer;
+  }
 }

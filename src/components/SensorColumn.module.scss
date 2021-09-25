@@ -1,7 +1,19 @@
-.sensor__column {
-  height: 1px;
+.sensor__container {
   width: 100%;
-  background: magenta;
-  margin: 0 1rem;
-  transition: height 0.5s ease;
+  margin: 1rem 1rem 3rem 1rem;
+
+  .sensor__header {
+    margin-bottom: 0.2rem;
+    font-size: 0.8rem;
+  }
+
+  .sensor__column {
+    background-color: cornflowerblue;
+    transition: height 0.5s ease;
+    border-color: transparent;
+
+    &--empty {
+      border-color: #eaeaea;
+    }
+  }
 }

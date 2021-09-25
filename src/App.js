@@ -12,14 +12,10 @@ function App() {
   }, []);
 
   async function getLatestData() {
-    const rawData = await fetch(process.env.REACT_APP_API_URL, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + process.env.REACT_APP_API_TOKEN,
-      },
-    });
+    const rawData = await fetch(process.env.REACT_APP_DB_API_URL + "current");
     const sensorResponse = await rawData.json();
+    // handle case without an entry
+    if (!sensorResponse) return;
     setCurrentlyViewedTime(sensorResponse.date);
     setCurrentlyViewedValues({
       sensorOne: sensorResponse.sensor1,
@@ -29,11 +25,15 @@ function App() {
     });
   }
 
+  function toggleDrawer() {
+    console.log("heya");
+  }
+
   return (
     <div id="app__wrapper">
       <header>
         <h1 className={style.page__heading}>
-          Now displaying data from{" "}
+          Now displaying data from
           <TimePicker
             time={new Date(currentlyViewedTime).toLocaleString("en-GB", {
               weekday: "long",
@@ -48,11 +48,12 @@ function App() {
       </header>
       <main>
         <section className={style.column__container}>
-          {Object.keys(currentlyViewedValues).map((columnKey) => {
+          {Object.keys(currentlyViewedValues).map((columnKey, index) => {
             return (
               <SensorColumn
                 key={columnKey}
                 sensorValue={currentlyViewedValues[columnKey]}
+                sensorIndex={index + 1}
               />
             );
           })}
