@@ -1,13 +1,12 @@
 @import "./style.scss";
 
 .page__heading {
-  margin: 0 2rem 1rem 2rem;
+  margin-bottom: 1rem;
   font-weight: bold;
 }
 
 .column__container {
   display: flex;
-  margin: 0 1rem;
   flex-flow: column wrap;
 
   @include screen-is(md) {

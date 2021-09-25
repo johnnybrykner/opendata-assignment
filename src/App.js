@@ -6,10 +6,16 @@ import TimePicker from "./components/TimePicker";
 function App() {
   const [currentlyViewedTime, setCurrentlyViewedTime] = useState(null);
   const [currentlyViewedValues, setCurrentlyViewedValues] = useState({});
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerTimes, setDrawerTimes] = useState(null);
 
   useEffect(() => {
     getLatestData();
   }, []);
+
+  useEffect(() => {
+    if (drawerOpen && !drawerTimes) getDrawerTimes();
+  }, [drawerOpen]);
 
   async function getLatestData() {
     const rawData = await fetch(process.env.REACT_APP_DB_API_URL + "current");
@@ -26,23 +32,27 @@ function App() {
   }
 
   function toggleDrawer() {
-    console.log("heya");
+    setDrawerOpen(!drawerOpen);
+  }
+
+  async function getDrawerTimes() {
+    const rawData = await fetch(process.env.REACT_APP_DB_API_URL + "times");
+    const timesResponse = await rawData.json();
+    // handle case without an entry
+    if (!timesResponse) return;
+    setDrawerTimes(timesResponse);
   }
 
   return (
     <div id="app__wrapper">
       <header>
         <h1 className={style.page__heading}>
-          Now displaying data from
+          Now displaying snapshot from
           <TimePicker
-            time={new Date(currentlyViewedTime).toLocaleString("en-GB", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-              hour: "numeric",
-              minute: "numeric",
-            })}
+            time={currentlyViewedTime}
+            toggleDrawer={() => toggleDrawer()}
+            drawerOpen={drawerOpen}
+            drawerTimes={drawerTimes}
           />
         </h1>
       </header>

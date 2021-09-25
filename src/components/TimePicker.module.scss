@@ -3,10 +3,24 @@
 .timepicker__element {
   padding: 0.5rem;
   display: block;
-  margin-top: 0.2rem;
+  margin: 0.5rem 0;
 
   @include screen-is(md) {
     display: inline;
     cursor: pointer;
+    margin: 0.5rem;
+  }
+}
+
+.timepicker__drawer {
+  width: 100%;
+  background-color: aquamarine;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  .timepicker__time {
+    font-size: 0.7rem;
+    padding: 1rem;
   }
 }
