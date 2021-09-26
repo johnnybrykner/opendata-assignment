@@ -12,20 +12,19 @@ function App() {
   const [drawerTimes, setDrawerTimes] = useState(null);
 
   useEffect(() => {
+    const getLatestData = async () => {
+      const rawData = await fetch(process.env.REACT_APP_DB_API_URL + "current");
+      const sensorResponse = await rawData.json();
+      // There is no real error handling for when the api should fail...
+      if (!sensorResponse) return;
+      changeViewedResult(sensorResponse);
+    };
     getLatestData();
   }, []);
 
   useEffect(() => {
     if (drawerOpen && !drawerTimes) getDrawerTimes();
   }, [drawerOpen, drawerTimes]);
-
-  async function getLatestData() {
-    const rawData = await fetch(process.env.REACT_APP_DB_API_URL + "current");
-    const sensorResponse = await rawData.json();
-    // There is no real error handling for when the api should fail...
-    if (!sensorResponse) return;
-    changeViewedResult(sensorResponse);
-  }
 
   function toggleDrawer() {
     setDrawerOpen(!drawerOpen);
