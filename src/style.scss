@@ -18,22 +18,20 @@ $heights: (
   }
 }
 
+$blue-grey: #b5c6e0;
+$light-grey: #ebf4f5;
+
 body {
   padding: 2rem;
   font-family: "Sintony", sans-serif;
 
-  em {
-    font-weight: bold;
+  @include screen-is(md) {
+    max-width: 1024px;
+    margin: 0 auto;
   }
 
-  .bordered {
-    border: 1px solid #eaeaea;
-    border-radius: 5px;
-
-    &:hover {
-      border-color: transparent;
-      box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1);
-    }
+  em {
+    font-weight: bold;
   }
 
   .loading__spinner {

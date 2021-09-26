@@ -1,26 +1,65 @@
 @import "../style.scss";
 
 .timepicker__element {
-  padding: 0.5rem;
+  padding: 1rem;
   display: block;
-  margin: 0.5rem 0;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1);
+  background-color: ghostwhite;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: $blue-grey;
+  }
 
   @include screen-is(md) {
-    display: inline;
+    display: block;
     cursor: pointer;
-    margin: 0.5rem;
+    padding: 1rem 0;
+    width: 400px;
+    text-align: center;
+  }
+
+  &--open {
+    border-radius: 5px 5px 0 0 !important;
   }
 }
 
 .timepicker__drawer {
-  width: 100%;
-  background-color: aquamarine;
+  background-color: ghostwhite;
+  border-radius: 0 0 5px 5px !important;
   display: flex;
   flex-flow: column;
   align-items: center;
+  position: relative;
+  z-index: 1;
+
+  @include screen-is(md) {
+    width: 400px;
+  }
 
   .timepicker__time {
     font-size: 0.7rem;
     padding: 1rem;
+
+    @include screen-is(md) {
+      cursor: pointer;
+    }
+
+    &:hover,
+    &:active {
+      color: mediumslateblue;
+    }
+    &--selected {
+      background-color: mediumslateblue;
+      color: ghostwhite;
+      border-radius: 5px;
+
+      &:hover,
+      &:active {
+        color: ghostwhite;
+      }
+    }
   }
 }

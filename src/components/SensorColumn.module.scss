@@ -14,12 +14,12 @@
   }
 
   .sensor__column {
-    background-color: cornflowerblue;
+    background-image: linear-gradient(19deg, $blue-grey 0%, $light-grey 100%);
     transition: height 0.5s ease;
-    border-color: transparent;
+    border-radius: 5px;
 
     &--empty {
-      border-color: #eaeaea;
+      border: 1px solid #eaeaea;
     }
   }
 }

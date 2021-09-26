@@ -8,13 +8,12 @@ function SensorColumn(props) {
         Sensor {props.sensorIndex}:{" "}
         <em>
           {props.sensorValue
-            ? "reported " + props.sensorValue
+            ? "reported " + props.sensorValue.toFixed(2)
             : "reported no value"}
         </em>
       </h2>
       <figure
         className={cc([
-          "bordered",
           props.sensorValue
             ? style.sensor__column
             : style["sensor__column--empty"],

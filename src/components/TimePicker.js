@@ -7,7 +7,10 @@ function TimePicker(props) {
     <>
       <span
         onClick={props.toggleDrawer}
-        className={cc(["bordered", style.timepicker__element])}
+        className={cc([
+          style.timepicker__element,
+          props.drawerOpen && style["timepicker__element--open"],
+        ])}
       >
         {new Date(props.time).toLocaleString("en-GB", {
           weekday: "long",
@@ -19,7 +22,7 @@ function TimePicker(props) {
         })}
       </span>
       {props.drawerOpen && (
-        <aside className={style.timepicker__drawer}>
+        <aside className={cc([style.timepicker__drawer])}>
           {!props.drawerTimes ? (
             <img
               src={spinner}
@@ -27,11 +30,19 @@ function TimePicker(props) {
               className="loading__spinner"
             />
           ) : (
-            props.drawerTimes.map((time) => {
-              return (
-                <ul>
-                  <li className={style.timepicker__time} key={time._id}>
-                    {new Date(time.date).toLocaleString("en-GB", {
+            <ul>
+              {props.drawerTimes.map((entry) => {
+                return (
+                  <li
+                    className={cc([
+                      style.timepicker__time,
+                      props.selected === entry.date &&
+                        style["timepicker__time--selected"],
+                    ])}
+                    key={entry._id}
+                    onClick={() => props.selectTime(entry.date)}
+                  >
+                    {new Date(entry.date).toLocaleString("en-GB", {
                       weekday: "long",
                       year: "numeric",
                       month: "long",
@@ -40,9 +51,9 @@ function TimePicker(props) {
                       minute: "numeric",
                     })}
                   </li>
-                </ul>
-              );
-            })
+                );
+              })}
+            </ul>
           )}
         </aside>
       )}

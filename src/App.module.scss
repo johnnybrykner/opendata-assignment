@@ -1,8 +1,33 @@
 @import "./style.scss";
 
-.page__heading {
-  margin-bottom: 1rem;
-  font-weight: bold;
+.loading__container {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+
+  .loading__heading {
+    margin-top: 1rem;
+  }
+  .loading__cat {
+    margin-top: 1rem;
+    width: 100%;
+    max-width: 498px;
+  }
+}
+
+.page__header {
+  display: flex;
+  justify-content: center;
+
+  .page__heading {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+
+    @include screen-is(md) {
+      width: max-content;
+    }
+  }
 }
 
 .column__container {
